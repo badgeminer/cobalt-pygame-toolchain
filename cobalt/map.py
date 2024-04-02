@@ -17,7 +17,7 @@ class tile(pygame.sprite.Sprite,metaclass=ABCMeta):
         # Fetch the rectangle object that has the dimensions of the image
         # Update the position of this object by setting the values of rect.x and rect.y
         self.rect = self.image.get_rect()
-
+@tileRegistry.register("test")
 class testTile(tile):
     def __init__(self, x, y, img) -> None:
         pygame.sprite.Sprite.__init__(self)
@@ -32,3 +32,23 @@ class testTile(tile):
 class map:
     def __init__(self,w,h) -> None:
         self.grid = [[testTile(x,y)for x in range(w)] for y in range(h)]
+
+@dataclass
+class link:
+    x1:int
+    y1:int
+    x2:int
+    y2:int
+    
+@dataclass
+class entity:
+    x:int
+    y:int
+
+@dataclass
+class MapSaved:
+    grid:list[list[str]]
+    links:list[link]
+    entitys:list[entity]
+    startX:int =1
+    startY:int =1
