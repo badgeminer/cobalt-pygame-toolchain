@@ -27,6 +27,8 @@ while True:
             case pygame.KEYDOWN:
                 match e.key:
                     case pygame.K_ESCAPE:
+                        mps.fill((0,0,0))
+                        Map.tiles.draw(mps)
                         sys.exit()
                     case pygame.K_w:
                         y -= 1

@@ -13,7 +13,7 @@ ASSET_404.fill((255,100,0),(0,0,16,16))
 ASSET_404.fill((255,100,0),(16,16,32,32))
 
 def xyshdr(x,y):
-    return (((x*4)%255),((y*4)%255),0)
+    return (((x*4)%255),0,((y*4)%255))
 
 def gridVpToScrVp(r:pygame.Rect):
     return pygame.Rect(
