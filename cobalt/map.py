@@ -55,7 +55,9 @@ class map:
     def place(self,x,y,typ):
         self.grid[y][x] = tileRegistry.get(typ,x,y)
     def ViewPort(self,x,y):
-        pass
+        vpSX = pygame.math.clamp((x)-cobalt.graphics.grdVpCX,0,(self.w)-cobalt.graphics.grdVpCX)
+        vpSY = pygame.math.clamp((y)-cobalt.graphics.grdVpCY,0,(self.h)-cobalt.graphics.grdVpCY)
+        return pygame.Rect(vpSX,vpSY,cobalt.graphics.grdVpW,cobalt.graphics.grdVpH)
 
 @dataclass
 class link:

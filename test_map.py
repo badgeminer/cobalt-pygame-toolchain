@@ -1,4 +1,4 @@
-import unittest,cobalt.map
+import unittest,cobalt.map,cobalt.graphics
 
 class TestMap(unittest.TestCase):
 
@@ -21,6 +21,23 @@ class TestMap(unittest.TestCase):
     def test_default(self):
         map = cobalt.map.map(2,2)
         self.assertEqual(map.grid[1][1].id,"void")
+    def test_view(self):
+        map = cobalt.map.map(1920//16,1080//16)
+        vp = map.ViewPort(50,50)
+        self.assertGreaterEqual(vp.top,0)
+        self.assertGreaterEqual(vp.left,0)
+        
+        self.assertLessEqual(vp.top,1920)
+        self.assertLessEqual(vp.left,1080)
+    def test_Scrview(self):
+        map = cobalt.map.map(1920//16,1080//16)
+        vp = cobalt.graphics.gridVpToScrVp(map.ViewPort(50,50))
+        self.assertGreaterEqual(vp.top,0)
+        self.assertGreaterEqual(vp.left,0)
+        
+        self.assertLessEqual(vp.top,1920)
+        self.assertLessEqual(vp.left,1080)
+        
 
 if __name__ == '__main__':
     unittest.main()
