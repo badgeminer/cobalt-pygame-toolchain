@@ -33,7 +33,7 @@ class testTile(tile):
         # Create an image of the block, and fill it with a color.
         # This could also be an image loaded from the disk.
         image = pygame.Surface([32, 32])
-        image.fill((255,0,0))
+        image.fill((0,0,0))
         super().__init__(x, y, image)
 
 @tileRegistry.register
@@ -68,8 +68,8 @@ class map:
         self.grid[y][x] = tileRegistry.get(typ,x,y)
         
     def ViewPort(self,x,y):
-        vpSX = pygame.math.clamp((x)-cobalt.graphics.grdVpCX,0,(self.w)-cobalt.graphics.grdVpCX)
-        vpSY = pygame.math.clamp((y)-cobalt.graphics.grdVpCY,0,(self.h)-cobalt.graphics.grdVpCY)
+        vpSX = pygame.math.clamp((x)-cobalt.graphics.grdVpCX,0,(self.w)-(cobalt.graphics.grdVpW-12))
+        vpSY = pygame.math.clamp((y)-cobalt.graphics.grdVpCY,0,(self.h)-(cobalt.graphics.grdVpH-6))
         r= pygame.Rect(vpSX,vpSY,cobalt.graphics.grdVpW,cobalt.graphics.grdVpH)
         #self.tiles.update(r)
         return r
